@@ -1,16 +1,16 @@
+# Amanda Taylor 
+
 CC = g++
 CFLAGS = -Wall -Wextra -std=c++11
+TARGET = first_fit
 
-all: memory_manager
+all: $(TARGET)
 
-memory_manager: main.o memory_manager.o
-	$(CC) $(CFLAGS) main.o memory_manager.o -o memory_manager
+$(TARGET): first_fit.cpp
+	$(CC) $(CFLAGS) -o $(TARGET) first_fit.cpp
 
-main.o: main.cpp memory_manager.h
-	$(CC) $(CFLAGS) -c main.cpp -o main.o
-
-memory_manager.o: memory_manager.cpp memory_manager.h
-	$(CC) $(CFLAGS) -c memory_manager.cpp -o memory_manager.o
+run: $(TARGET)
+	./$(TARGET)
 
 clean:
-	rm -f *.o memory_manager
+	rm -f $(TARGET)
